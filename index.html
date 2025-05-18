@@ -53,14 +53,40 @@
       border-radius: 10px;
       width: 250px;
     }
+    form {
+      margin-top: 2rem;
+    }
+    input[type="text"] {
+      padding: 0.7rem;
+      width: 60%;
+      max-width: 300px;
+      border-radius: 5px;
+      border: none;
+      margin: 0.5rem;
+      font-size: 1rem;
+    }
+    #response {
+      margin-top: 2rem;
+      font-style: italic;
+      color: #99ffcc;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>AetheroMind</h1>
     <p class="tagline">Tvoj prenajímateľný mozog</p>
-    <button class="cta-button" onclick="alert('Kontaktuj Adama alebo čoskoro spustíme demo.')">Začni s Aetherom</button>
   </header>
+
+  <section>
+    <h2>Začni s Aetherom</h2>
+    <form id="aetheroForm">
+      <input type="text" id="name" placeholder="Tvoje meno" required><br>
+      <input type="text" id="goal" placeholder="Tvoj cieľ" required><br>
+      <button type="submit" class="cta-button">Zadaj</button>
+    </form>
+    <div id="response"></div>
+  </section>
 
   <section>
     <h2>Čo je Aethero?</h2>
@@ -85,5 +111,20 @@
       <div class="box">Tvorcovia</div>
     </div>
   </section>
+
+  <script>
+    document.getElementById("aetheroForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const goal = document.getElementById("goal").value.trim();
+      const response = document.getElementById("response");
+
+      if (name && goal) {
+        response.innerHTML = `Ahoj <b>${name}</b>, Aethero ťa počuje. Tvoj cieľ je <i>${goal}</i>. Prvý krok: definuj si ho konkrétnejšie.`;
+      } else {
+        response.innerText = "Prosím, vyplň obe polia.";
+      }
+    });
+  </script>
 </body>
 </html>
